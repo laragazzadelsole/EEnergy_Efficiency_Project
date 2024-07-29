@@ -1,4 +1,5 @@
-            
+# remove unused imports
+# group imports in similar sections
 import streamlit as st
 import streamlit.components.v1 as components
 import numpy as np
@@ -12,17 +13,21 @@ import csv
 from datetime import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
+# Its always better to avoid using *, because you can't easily trace back what you are importing
 from fixed_components import *
 import altair as alt
 
 def initialize_session_state():
+    # add a comment explaining why the fact that "key" is in session state is important :thinking:
     if 'key' not in st.session_state:
         st.session_state['key'] = 'value'
         st.session_state['consent'] = False
         st.session_state['submit'] = False
         st.session_state['No answer'] = ''
     
+    # same for key as above
     if 'data' not in st.session_state:
+        # this can be defined above as a constant or in an external file
         st.session_state['data'] = {
             'User Full Name': [],
             'User Working Position': [],
@@ -39,6 +44,7 @@ def initialize_session_state():
             'Minimum Effect Size Q9': [],
             'Cost-Benefit Ratio': [],
             'Risk Aversion': []
+            # remove unused things
             #'RCT Q1': [],
             #'RCT Q2': [],
             #'RCT Q3': [],
@@ -47,6 +53,7 @@ def initialize_session_state():
             #'RCT Q6': []
             }
     
+# this does not let you break, are you sure its what you need?
 def safe_var(key):
     if key in st.session_state:
         return st.session_state[key]
@@ -56,17 +63,18 @@ def survey_title_subtitle(header_config):
     st.write(header_config['survey_description'])
 
 def create_question(jsonfile_name):
-
+# why do you need to cast to string?
     minor_value = str(jsonfile_name['minor_value'])
     min_value = jsonfile_name['min_value_graph']
     max_value = jsonfile_name['max_value_graph']
     interval = jsonfile_name['step_size_graph']
     major_value = str(jsonfile_name['major_value'])
 
+    # you could define an external function for this
     # Create a list of ranges based on the provided values
     x_axis = [minor_value] + [f"{round(i, 1)} - {round((i + interval - 0.01), 2)}" for i in np.arange(min_value, max_value, interval)] + [major_value]
 
-    # TODO find a way to remove it
+    # TODO find a way to remove it -> agree, this is super sad
     if jsonfile_name['min_value_graph'] == -1:
         x_axis.insert(6, 0)
         x_axis[1] = '-0.99 - -0.81'
@@ -79,20 +87,23 @@ def create_question(jsonfile_name):
 
     y_axis = np.zeros(len(x_axis))
 
+    # don't use generic names like column_1
     data = pd.DataFrame(list(zip(x_axis, y_axis)), columns=[jsonfile_name['column_1'], jsonfile_name['column_2']])
-
+    
     st.subheader(jsonfile_name['title_question'])
     st.write(jsonfile_name['subtitle_question'])
     
+    # comment and specify what you are doing in such complex functions
     data_container = st.container()
     with data_container:
         table, plot = st.columns([0.4, 0.6], gap="large")
         with table:
+            # generic names
             bins_grid = st.data_editor(data, key= jsonfile_name['key'], hide_index=True, use_container_width=True, disabled=[jsonfile_name['column_1']])
 
             percentage_difference = 100 - sum(bins_grid[jsonfile_name['column_2']])
 
-            # Display the counter
+            # Display the counter -> external fuction
             if percentage_difference > 0:
                 st.write(f"**You still have to allocate {percentage_difference} percent probability.**")
             elif percentage_difference == 0:
@@ -118,6 +129,7 @@ def effect_size_question(jsonfile_name):
         st.text_input("Please insert a number or write 'I don't know'.", key = jsonfile_name['num_input_question'])
 
 def RCT_questions():
+    # this lines should be constants or external fules
     st.subheader('Questions on RCTs Evaluation')
     st.write('We would like to know your opinion regarding RCTs programs.')
     st.write('1. After my experience in being involved in this project, I am:')
@@ -134,9 +146,11 @@ def RCT_questions():
     st.write('- Do you think allocating grants randomly amongst equally eligible potential beneficiaries is ethical? Did you think so before engaging in the RCT?')
     st.text_input('Please, write about your experience (max 500 characters).', max_chars=500, key = 'RCT_question6')
 
+# params names are too generic + could pass a dictionary and not a list of stuff
 def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updated_bins_question_3_df, updated_bins_question_4_df, updated_bins_question_5_df, updated_bins_question_6_df, updated_bins_question_7_df, updated_bins_question_8_df, updated_bins_question_9_df):
 
     updated_bins_list = [updated_bins_question_1_df, updated_bins_question_2_df, updated_bins_question_3_df, updated_bins_question_4_df, updated_bins_question_5_df, updated_bins_question_6_df, updated_bins_question_7_df, updated_bins_question_8_df, updated_bins_question_9_df]
+    # remove unused stuff
     # Extracting the first row of each transposed dataframe as column names
     #for i, transposed_df in enumerate(transposed_bins_list):
     #    transposed_df.columns = column_names_list[i]
@@ -149,6 +163,7 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     #    prefix = f'Q{i + 1}  '
     #    transposed_df.columns =  [f'{prefix}{col}' for col in transposed_df.columns]
 
+    # generic name of fucntion
     def restructure_df(df, i):
         transposed_df = df.transpose()
         transposed_df.columns =  [f'Q{i + 1}  {col}' for col in list(transposed_df.iloc[0])]
@@ -162,12 +177,13 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     # Concatenating transposed dataframes
     questions_df = pd.concat(transposed_bins_list, axis=1)
 
-    # Resetting index if needed
+    # Resetting index if needed "if needed"?
     questions_df.reset_index(drop=True, inplace=True)
 
     # Update session state
     data = st.session_state['data']
 
+    # should be at file level not here
     USER_FULL_NAME = 'User Full Name'
     USER_PROF_CATEGORY = 'User Professional Category'
     USER_POSITION = 'User Working Position'
@@ -191,6 +207,7 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     #RCT_Q5 = 'RCT Q5'
     #RCT_Q6 = 'RCT Q6'
 
+    # do you really need to do it one by one?
     data[USER_FULL_NAME].append(safe_var('user_full_name'))
     data[USER_POSITION].append(safe_var('user_position'))
     data[USER_PROF_CATEGORY].append(safe_var('professional_category'))
@@ -225,7 +242,8 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     
     st.session_state['submit'] = True
     
-    #save data to google sheet
+    #save data to google sheet -> constants or external file
+    # external function
     scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
     
     creds = ServiceAccountCredentials.from_json_keyfile_dict(secrets_to_json(), scope)
@@ -233,6 +251,7 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
  
     sheet = client.open("EEnergy_Efficiency_Survey_Data").sheet1
 
+    # remove unused stuff
     column_names_list = concatenated_df.columns.tolist()
     #column_names = sheet.append_row(column_names_list)
 

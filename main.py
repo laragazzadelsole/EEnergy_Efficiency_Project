@@ -1,3 +1,4 @@
+# first external imports, then internal, avoiding *
 import streamlit as st
 import json
 from fixed_components import *
@@ -9,6 +10,7 @@ st.set_page_config(layout="wide")
 # Read the JSON file
 config = json.load(open('config.json'))
 
+# put some comments here and there
 initialize_session_state()
 
 survey_title_subtitle(config['header'])
@@ -21,6 +23,7 @@ if st.session_state['consent']:
 
     instructions()
 
+    # do you really need to do it like this? avoid repeating too much code
     q1_config = config['question1']
     updated_bins_question_1_df, percentage_difference1, num_bins1 = create_question(q1_config)
     effect_size_question1 = effect_size_question(q1_config)
@@ -59,6 +62,7 @@ if st.session_state['consent']:
     updated_bins_question_9_df, percentage_difference9, num_bins9 = create_question(q9_config)
     effect_size_question9 = effect_size_question(q9_config)
     
+    # remove unused stuff
     #_, col2, _, _ = st.columns(4)
     #with col2:
     #    st.image("SatSunGraph.png", width = 700)
@@ -70,16 +74,18 @@ if st.session_state['consent']:
     percentage_differences = [percentage_difference1, percentage_difference2] #, percentage_difference3, percentage_difference4, percentage_difference5
     updated_bins_list = [updated_bins_question_1_df, updated_bins_question_2_df]#, updated_bins_question_3_df, updated_bins_question_4_df, updated_bins_question_5_df
     
-    
+    # these are constants
     st.subheader("Question 10 - Cost/Benefit Ratio")
     st.write("In simple terms, a cost-benefit ratio is used to compare the costs of a project against the benefits it delivers. For instance, if a program costs €100.000 and the monetized value of its benefits is €150.000, the cost-benefit ratio would be 1:1.5. This means that for every euro spent, the program delivers one and a half euro in benefits. A higher ratio indicates greater efficiency and value for money. This question prompts to consider the efficiency and economic justification for scaling a program, ensuring that the decision aligns with both fiscal responsibility and the desired impact. At what cost-benefit ratio would you consider scaling the EEnergy Efficiency Project?\n Consider “benefits” that occurred after two years of running the program and “costs” as the total expenses incurred to implement, operate, and maintain a program or project (including administration and overhead costs).")
     
+    # constants and magic numbers, without comments
     col1, _= st.columns(2)
     with col1:
         # list needed later in the cost/benefit question
         cost_benefit_list = [f"1:{round(i, 1)}" for i in np.arange(0.6, 3.1, .2)]
         st.select_slider("Please move the slider to indicate your preference.", cost_benefit_list, key = "cost_benefit")
 
+    # these are constants
     st.subheader("Question 11 - Risk Aversion")
     st.write("Rate your willingness to take risks in general on a 10-point scale, with 1 completely unwilling and 10 completely willing.")
 
@@ -87,6 +93,7 @@ if st.session_state['consent']:
     with col1:   
         st.slider("Please move the slider to indicate your preference.", 1, 10, key= "risk_aversion")
 
+    # remove unused
     #if st.session_state['professional_category'] in ['Government Official/Donor', 'Program Implementer/Practitioner']:
         #RCT_questions() 
 
@@ -94,6 +101,7 @@ if st.session_state['consent']:
     if all(percentage == 0 for percentage in percentage_differences):
         submit = st.button("Submit", on_click = add_submission, args = ([updated_bins_question_1_df, updated_bins_question_2_df, updated_bins_question_3_df, updated_bins_question_4_df, updated_bins_question_5_df, updated_bins_question_6_df, updated_bins_question_7_df, updated_bins_question_8_df, updated_bins_question_9_df]))
 
+    # constants and remove unused
     if st.session_state['submit']:
         st.success(f"Thank you for completing the Survey on {config['header']['survey_title']}!")
         # TODO add download button

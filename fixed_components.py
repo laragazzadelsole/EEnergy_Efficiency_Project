@@ -1,3 +1,5 @@
+# remove unused imports
+# group imports in similar sections
 import streamlit as st
 import streamlit.components.v1 as components
 from datetime import datetime
@@ -35,6 +37,7 @@ def personal_information():
         st.number_input('Please, insert the years of experience you have working on energy efficiency:', min_value= 0, max_value= 70, key = 'years_of_experience')
 
 def secrets_to_json():
+    # better secrets management, maybe in a class?
     return {
         "folder_id": st.secrets["folder_id"],
         "type": st.secrets["type"],
@@ -53,6 +56,7 @@ def secrets_to_json():
 
 # EXAMPLE 
 
+# constants should be at beginning or exgternal file
 TITLE_INSTRUCTIONS = '''Instructions'''
 
 SUBTITLE_INSTRUCTIONS = '''This example is designed to help you understand how to effectively respond to this survey. \\
@@ -67,6 +71,7 @@ def instructions():
     st.subheader(TITLE_INSTRUCTIONS)
     st.write(SUBTITLE_INSTRUCTIONS)
 
+    # this is a constants?
     st.subheader("Temperature Forecast Tomorrow in Your City")
     st.write('_Please scroll on the table to see all available options._')
 
@@ -77,6 +82,7 @@ def instructions():
         # Create some example data as a Pandas DataFrame
         values_column = ['< 15'] + list(range(16, 30)) + ['> 30']
         zeros_column = [0 for _ in values_column]
+        # magic numbers should be aboided
         zeros_column[8:13] = [5, 15, 45, 20, 15]
 
         data = {'Temperature': values_column, 'Probability': zeros_column}

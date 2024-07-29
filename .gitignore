@@ -159,7 +159,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+# group ignored files in specific groups with titles
 secrets.toml
 
+# avoid file names with whitespaces -> move to keys_copy.json
 keys copy.json
 .venv
