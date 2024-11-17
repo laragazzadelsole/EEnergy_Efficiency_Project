@@ -195,7 +195,6 @@ def sustainability_advisors_question():
 
 def secrets_to_json():
     return {
-        "folder_id": st.secrets["folder_id"],
         "type": st.secrets["type"],
         "project_id": st.secrets["project_id"],
         "private_key_id": st.secrets["private_key_id"],
