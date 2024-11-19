@@ -14,7 +14,6 @@ config = json.load(open('config.json'))
 initialize_session_state()
 
 
-    
 survey_title_subtitle(config['header'])
 
 consent_form()
@@ -109,8 +108,7 @@ if st.session_state['consent'] == True:
     # Submission button + saving data 
     if all(percentage == 0 for percentage in percentage_differences):
         submit = st.button("Submit", on_click = add_submission, args = ([updated_bins_question_1_df, updated_bins_question_2_df, updated_bins_question_3_df, updated_bins_question_4_df, updated_bins_question_5_df, updated_bins_question_6_df, updated_bins_question_7_df, updated_bins_question_8_df]))
-    for key, value in data.items():
-        st.write(f"{key}: Length = {len(value)}")
+
     if st.session_state['submit']:
         st.success(f"Thank you for completing the Survey on {config['header']['survey_title']}!")
         # TODO add download button
