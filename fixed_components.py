@@ -13,7 +13,7 @@ import requests
 import csv
 import altair as alt
 import plotly.graph_objs as go
-from streamlit_sortable import st_sortable
+from streamlit_sortables import soretd_items
         
 # Insert consent
 def add_consent():
