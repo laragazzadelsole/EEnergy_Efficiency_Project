@@ -142,11 +142,11 @@ def sustainability_advisors_question():
             st.number_input("How many firms do you advise on sustainable development practices unrelated to energy efficiency?", min_value=0, step=1, key="num_firms_advised")
             
             # Client Engagement and Meeting Effectiveness
-            st.write("**Client Engagement and Meeting Effectiveness**")
+            st.subheader("Client Engagement and Meeting Effectiveness")
             st.selectbox("How often do you meet with the firms you advise?", options=["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "As needed"], key="meeting_frequency_advisors")
             st.selectbox("How long are your typical meetings with the firms you advise?", options=["Less than 30 minutes", "30-60 minutes", "1-2 hours", "More than 2 hours"], key="meeting_duration_advisors")
             
-            st.title("Rank Topics by Time Covered During Meetings")
+            st.subheader("Rank Topics by Time Covered During Meetings")
 
             # List of topics to rank
             topics = [
