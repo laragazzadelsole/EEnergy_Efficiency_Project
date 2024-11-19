@@ -171,25 +171,57 @@ def sustainability_advisors_question():
             st.write("You ranked the topics as follows (by time covered):")
             st.write(ranked_topics)
             # Updated question with multiple-choice selection
-            st.multiselect(
-                "What topics do you usually discuss during your meetings with firms? (Select all that apply)", 
-                options=[
-                    "Energy efficiency strategies",
-                    "Sustainable development practices",
-                    "Cost-saving measures",
-                    "Regulatory compliance",
-                    "Technology upgrades",
-                    "Employee training",
-                    "Environmental impact assessments",
-                    "Other"
-                ], 
-                key="meeting_topics_advisors"
-            )
+            #st.multiselect(
+            #     "What topics do you usually discuss during your meetings with firms? (Select all that apply)", 
+            #     options=[
+            #         "Energy efficiency strategies",
+            #         "Sustainable development practices",
+            #         "Cost-saving measures",
+            #         "Regulatory compliance",
+            #         "Technology upgrades",
+            #         "Employee training",
+            #         "Environmental impact assessments",
+            #         "Other"
+            #     ], 
+            #     key="meeting_topics_advisors"
+            # )
             st.radio(
                 "How effective do you feel your meetings are in supporting firms to improve their sustainability practices?", 
                 options=["Very effective", "Somewhat effective", "Neutral", "Not very effective", "Not effective at all"], 
                 key="meeting_effectiveness_advisors"
             )                
+            # Example list of technologies for Column 1
+            technologies = [
+                "Renewable energy investment",
+                "HVAC system upgrades",
+                "Energy-efficient lighting",
+                "Smart and automated control systems",
+                "Energy monitoring systems",
+                "Building insulation improvements",
+                "Other"
+            ]
+            
+            # Create a DataFrame for the table
+            data = pd.DataFrame({
+                "Technology": technologies,
+                "Payback Time (months)": ["" for _ in technologies],  # Placeholder for payback time
+                "Energy Savings ($/1000)": ["" for _ in technologies]  # Placeholder for energy savings
+            })
+            
+            # Add the question header
+            st.subheader("Which technologies do you think are most effective in improving energy efficiency?")
+            
+            # Editable table
+            edited_data = st.experimental_data_editor(
+                data,
+                num_rows="dynamic",  # Allow adding/removing rows dynamically
+                use_container_width=True,
+                key="tech_efficiency_table"
+            )
+            
+            # Display the result
+            st.write("Your input:")
+            st.write(edited_data)
             # Advice Given and Client Reactions
             st.write("**Advice Given and Client Reactions**")
             st.text_area("What advice have you given to firms that they have chosen to follow?", key="advice_followed_by_firms")
