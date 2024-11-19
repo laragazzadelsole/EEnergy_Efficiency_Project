@@ -66,36 +66,36 @@ def entrepreneur_firm_representative_question():
         col1, _ = st.columns(2)
 
         with col1:
-            # Question 1: Number of advisors focusing on sustainability practices
-            st.number_input("How many advisors help your firm with sustainability practices?", 
-                            min_value=0, step=1, key="num_advisors")
+            # # Question 1: Number of advisors focusing on sustainability practices
+            # st.number_input("How many advisors help your firm with sustainability practices?", 
+            #                 min_value=0, step=1, key="num_advisors")
 
-            # Question 2: Frequency of meetings with advisors
-            st.selectbox("How often do you meet with your advisors?", 
-                         options=["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "As needed"], key="meeting_frequency")
+            # # Question 2: Frequency of meetings with advisors
+            # st.selectbox("How often do you meet with your advisors?", 
+            #              options=["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "As needed"], key="meeting_frequency")
 
-            # Question 3: Duration of typical meetings
-            st.selectbox("How long are your typical meetings with them?", 
-                         options=["Less than 30 minutes", "30-60 minutes", "1-2 hours", "More than 2 hours"], key="meeting_duration")
+            # # Question 3: Duration of typical meetings
+            # st.selectbox("How long are your typical meetings with them?", 
+            #              options=["Less than 30 minutes", "30-60 minutes", "1-2 hours", "More than 2 hours"], key="meeting_duration")
 
-            # Question 4: Topics discussed in meetings
-            st.text_area("What do you talk about in these meetings?", key="meeting_topics")
+            # # Question 4: Topics discussed in meetings
+            # st.text_area("What do you talk about in these meetings?", key="meeting_topics")
 
-            # Question 5: Rating the helpfulness of meetings
-            st.radio("How helpful are these meetings for your business?", 
-                     options=["Very helpful", "Somewhat helpful", "Neutral", "Not very helpful", "Not helpful at all"], key="meeting_usefulness")
+            # # Question 5: Rating the helpfulness of meetings
+            # st.radio("How helpful are these meetings for your business?", 
+            #          options=["Very helpful", "Somewhat helpful", "Neutral", "Not very helpful", "Not helpful at all"], key="meeting_usefulness")
 
-            # Question 6: Advice followed
-            st.text_area("What specific advice did they give you that you decided to follow?", key="advice_followed")
+            # # Question 6: Advice followed
+            # st.text_area("What specific advice did they give you that you decided to follow?", key="advice_followed")
 
-            # Question 7: Reasons for following advice
-            st.text_area("Why did you decide to follow this advice?", key="reasons_for_following")
+            # # Question 7: Reasons for following advice
+            # st.text_area("Why did you decide to follow this advice?", key="reasons_for_following")
 
-            # Question 8: Advice not followed
-            st.text_area("What specific advice did they give you that you decided not to follow?", key="advice_not_followed")
+            # # Question 8: Advice not followed
+            # st.text_area("What specific advice did they give you that you decided not to follow?", key="advice_not_followed")
 
-            # Question 9: Reasons for not following advice
-            st.text_area("Why did you decide not to follow this advice? (For example: Financial costs, labor costs, or other reasons)", key="reasons_not_following")
+            # # Question 9: Reasons for not following advice
+            # st.text_area("Why did you decide not to follow this advice? (For example: Financial costs, labor costs, or other reasons)", key="reasons_not_following")
 
 # def sustainability_advisors_question():
 #         if st.session_state['professional_category'] == 'Sustainability Advisor':
