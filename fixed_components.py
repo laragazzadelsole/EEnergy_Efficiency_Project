@@ -172,7 +172,7 @@ def sustainability_advisors_question():
                 # Updated question with multiple-choice selection
                 st.multiselect(
                     "What topics do you usually discuss during your meetings with firms? (Select all that apply)", 
-                    options=[
+                    options=[hi
                         "Energy efficiency strategies",
                         "Sustainable development practices",
                         "Cost-saving measures",
