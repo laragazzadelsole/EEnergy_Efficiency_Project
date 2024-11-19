@@ -213,11 +213,11 @@ def sustainability_advisors_question():
             # Add the question header
             st.subheader("Which technologies do you think are most effective in improving energy efficiency?")
             
-            # Editable table
             edited_data = st.experimental_data_editor(
                 data,
                 num_rows="dynamic",  # Allow adding/removing rows dynamically
                 use_container_width=True,
+                disabled=False,  # Set to False to disable editing if needed
                 key="tech_efficiency_table"
             )
             
