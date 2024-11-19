@@ -379,7 +379,8 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     data[RANKED_TOPICS].append(ranked_topics)
     
     st.session_state['data'] = data
-    
+    for key, value in data.items():
+        st.write(f"{key}: Length = {len(value)}")
     session_state_df = pd.DataFrame(data)
     
     personal_data_df = session_state_df.iloc[:, :5]
