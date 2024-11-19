@@ -191,14 +191,16 @@ def sustainability_advisors_question():
                 key="meeting_effectiveness_advisors"
             )                
             # Example list of technologies for Column 1
+            # Updated list of technologies for Column 1
             technologies = [
-                "Renewable energy investment",
-                "HVAC system upgrades",
-                "Energy-efficient lighting",
-                "Smart and automated control systems",
-                "Energy monitoring systems",
-                "Building insulation improvements",
-                "Other"
+                "Renewable energy sources including PV Panels",
+                "Storage Devices",
+                "Combined renewable + PV and Storage",
+                "Lighting",
+                "Conditioning System (HVAC)",
+                "Building Upgrade (door, roof, window, insulation)",
+                "Machinery replacement / upgrade including production line improvements",
+                "Vehicles"
             ]
             
             # Create a DataFrame for the table
