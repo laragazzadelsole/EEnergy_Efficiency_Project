@@ -216,7 +216,16 @@ def sustainability_advisors_question():
             table_height = (len(df) + 1) * row_height  # Add 1 for the header
             
             # Display the table
-            st.subheader("Which technologies do you think are most effective in improving energy efficiency?")
+           st.subheader("Which technologies do you think are most effective in improving energy efficiency?")
+                st.write("""
+            Please complete the table below by filling in the following details for each technology:
+            
+            1. **Payback Time (months)**: Write how many months it will take to recover the money spent on this technology. 
+               Example: If you expect the investment to be recovered in 12 months, write "12".
+               
+            2. **Energy Savings ($/1000)**: Write how much energy (in dollars) will be saved for every $1,000 spent. 
+               Example: If the savings are $150 for every $1,000 invested, write "150".
+                """)
             df['Technology'] = df['Technology'].astype(str)  # Ensure the first column is treated as strings
             
             edited_df = st.data_editor(
