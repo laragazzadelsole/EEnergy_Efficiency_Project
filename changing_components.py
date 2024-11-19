@@ -74,10 +74,30 @@ def initialize_session_state():
             'Minimum Effect Size Q6': [],
             'Minimum Effect Size Q7': [],
             'Minimum Effect Size Q8': [],
-            #'Minimum Effect Size Q9': [],
+            # 'Minimum Effect Size Q9': [],
             'Cost-Benefit Ratio': [],
-            'Risk Aversion': []
-            }
+            'Risk Aversion': [],
+            # New keys for added questions
+            'Years as Advisor': [],
+            'Join Date EEN': [],
+            'Expert or Generalist': [],
+            'Work Dedication': [],
+            'Firms Consulted Per Week': [],
+            'Average Working Hours Per Client': [],
+            'Number of Firms Advised on Sustainability': [],
+            'Meeting Frequency': [],
+            'Meeting Duration': [],
+            'Topics Discussed': [],
+            'Time Covered Rankings': [],
+            'Meeting Effectiveness': [],
+            'Advice Followed by Firms': [],
+            'Reasons Firms Followed Advice': [],
+            'Advice Not Followed by Firms': [],
+            'Reasons Firms Did Not Follow Advice': [],
+            'Expected Reduction in Energy Use': [],
+            'Most Effective Measures': [],
+            'Least Effective Measures': []
+        }
     
 def safe_var(key):
     if key in st.session_state:
