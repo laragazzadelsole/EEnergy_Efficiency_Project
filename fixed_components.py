@@ -193,14 +193,14 @@ def sustainability_advisors_question():
             # Example list of technologies for Column 1
             # Updated list of technologies for Column 1
             technologies = [
-                "Renewable energy sources including PV Panels",
-                "Storage Devices",
-                "Combined renewable + PV and Storage",
-                "Lighting",
-                "Conditioning System (HVAC)",
-                "Building Upgrade (door, roof, window, insulation)",
-                "Machinery replacement / upgrade including production line improvements",
-                "Vehicles"
+                "Renewable Energy (e.g. PV Panels)",
+                "Energy Storage",
+                "Combined Renewable + Storage",
+                "Efficient Lighting",
+                "HVAC Systems",
+                "Building Upgrades",
+                "Machinery Upgrades",
+                "Energy-Efficient Vehicles"
             ]
             
             # Create a DataFrame for the table
