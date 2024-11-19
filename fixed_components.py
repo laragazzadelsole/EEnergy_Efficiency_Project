@@ -254,11 +254,11 @@ def sustainability_advisors_question():
             st.radio(
                 "What is your per hour consultancy fee, averaged for the last 30 days?",
                 options=[
-                    "Less than $50",
-                    "$50 - $100",
-                    "$100 - $150",
-                    "$150 - $200",
-                    "More than $200"
+                    "Less than €50",
+                    "€50 - €100",
+                    "€100 - €150",
+                    "€150 - €200",
+                    "More than €200"
                 ],
                 key="personal_hourly_fee"
             )
@@ -267,11 +267,11 @@ def sustainability_advisors_question():
             st.radio(
                 "What is the average per hour consultancy fee for your firm, if different, averaged for the last 30 days?",
                 options=[
-                    "Less than $50",
-                    "$50 - $100",
-                    "$100 - $150",
-                    "$150 - $200",
-                    "More than $200",
+                    "Less than €50",
+                    "€50 - €100",
+                    "€100 - €150",
+                    "€150 - €200",
+                    "More than €200",
                     "Not applicable (same as personal)"
                 ],
                 key="firm_hourly_fee"
