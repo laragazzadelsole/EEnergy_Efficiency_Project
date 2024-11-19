@@ -56,11 +56,10 @@ def initialize_session_state():
         st.session_state['No answer'] = ''
         st.session_state['page'] = 0    
                 
-    # Initialize session state for page navigation
 
-    # # Initialize session state for professional category
-    # if "professional_category" not in st.session_state:
-    #     st.session_state["professional_category"] = []
+
+    if "professional_category" not in st.session_state:
+        st.session_state["professional_category"] = "" 
         
     if 'data' not in st.session_state:
         st.session_state['data'] = {
