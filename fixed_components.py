@@ -161,7 +161,7 @@ def sustainability_advisors_question():
                 ]
                 
                 # Allow users to rank topics via drag-and-drop
-                ranked_topics = st_sortable(
+                ranked_topics = sort_items(
                     topics, 
                     key="time_covered_ranking", 
                     direction="vertical"
