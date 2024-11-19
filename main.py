@@ -13,7 +13,8 @@ config = json.load(open('config.json'))
 
 initialize_session_state()
 
-
+for key, value in data.items():
+    st.write(f"{key}: Length = {len(value)}")
     
 survey_title_subtitle(config['header'])
 
