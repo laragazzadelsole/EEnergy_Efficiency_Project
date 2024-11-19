@@ -120,36 +120,60 @@ def sustainability_advisors_question():
         col1, _ = st.columns(2)
 
         with col1:
-                # Advisor Background and Experience
-                st.write("**Advisor Background and Experience**")
-                st.number_input("How many years have you been working as an advisor on energy efficiency topics?", 
-                    min_value=0.0, 
-                    step=0.5, 
-                    format="%.1f", 
-                    key='years_as_advisor')
-                st.date_input("In which year did you join EEN?", key="join_date_een")
-                st.radio("Do you describe yourself as an energy efficiency expert, generalist, or other?", options=["Energy efficiency expert", "Generalist", "Other"], key="expert_or_generalist")
-                #st.multiselect("When evaluating energy efficiency, what do you rely on most? (Select all that apply)", options=["Formal training", "Professional knowledge", "Experience", "Combination"], key="assessment_basis")
-                st.selectbox("On average, what percentage of your work is related to energy efficiency topics?", options=["Less than 30%", "30-70%", "More than 70%"], key="work_dedication")
-                #st.selectbox("How do you usually find new clients or start working with them?", options=["Referrals", "Cold outreach", "Inbound inquiries", "Networking events", "Other"], key="client_acquisition")
-                
-                # Workload and Client Interactions
-                st.write("**Workload and Client Interactions**")
-                st.write("For the following questions, please reflect on your typical work with firms in the past week. If the last week was unusual (e.g., due to vacation), please consider a typical week instead.")
-                st.number_input("How many firms did you advise on energy efficiency topics in the past week (include all clients, not just those within EEN)?", min_value=0, step=1, key="firms_consulted_pw")
-                st.number_input("On average, how many hours in total do you spend working with each client on a project or service?", min_value=0.0, step=0.5, key="working_hours")
+            # Advisor Background and Experience
+            st.write("**Advisor Background and Experience**")
+            st.number_input("How many years have you been working as an advisor on energy efficiency topics?", 
+                min_value=0.0, 
+                step=0.5, 
+                format="%.1f", 
+                key='years_as_advisor')
+            st.date_input("In which year did you join EEN?", key="join_date_een")
+            st.radio("Do you describe yourself as an energy efficiency expert, generalist, or other?", options=["Energy efficiency expert", "Generalist", "Other"], key="expert_or_generalist")
+            #st.multiselect("When evaluating energy efficiency, what do you rely on most? (Select all that apply)", options=["Formal training", "Professional knowledge", "Experience", "Combination"], key="assessment_basis")
+            st.selectbox("On average, what percentage of your work is related to energy efficiency topics?", options=["Less than 30%", "30-70%", "More than 70%"], key="work_dedication")
+            #st.selectbox("How do you usually find new clients or start working with them?", options=["Referrals", "Cold outreach", "Inbound inquiries", "Networking events", "Other"], key="client_acquisition")
+            
+            # Workload and Client Interactions
+            st.write("**Workload and Client Interactions**")
+            st.write("For the following questions, please reflect on your typical work with firms in the past week. If the last week was unusual (e.g., due to vacation), please consider a typical week instead.")
+            st.number_input("How many firms did you advise on energy efficiency topics in the past week (include all clients, not just those within EEN)?", min_value=0, step=1, key="firms_consulted_pw")
+            st.number_input("On average, how many hours in total do you spend working with each client on a project or service?", min_value=0.0, step=0.5, key="working_hours")
 
-                st.number_input("How many firms do you advise on sustainable development practices unrelated to energy efficiency?", min_value=0, step=1, key="num_firms_advised")
-                
-                # Client Engagement and Meeting Effectiveness
-                st.write("**Client Engagement and Meeting Effectiveness**")
-                st.selectbox("How often do you meet with the firms you advise?", options=["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "As needed"], key="meeting_frequency_advisors")
-                st.selectbox("How long are your typical meetings with the firms you advise?", options=["Less than 30 minutes", "30-60 minutes", "1-2 hours", "More than 2 hours"], key="meeting_duration_advisors")
-                
-                st.title("Rank Topics by Time Covered During Meetings")
+            st.number_input("How many firms do you advise on sustainable development practices unrelated to energy efficiency?", min_value=0, step=1, key="num_firms_advised")
+            
+            # Client Engagement and Meeting Effectiveness
+            st.write("**Client Engagement and Meeting Effectiveness**")
+            st.selectbox("How often do you meet with the firms you advise?", options=["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "As needed"], key="meeting_frequency_advisors")
+            st.selectbox("How long are your typical meetings with the firms you advise?", options=["Less than 30 minutes", "30-60 minutes", "1-2 hours", "More than 2 hours"], key="meeting_duration_advisors")
+            
+            st.title("Rank Topics by Time Covered During Meetings")
 
-                # List of topics to rank
-                topics = [
+            # List of topics to rank
+            topics = [
+                "Energy efficiency strategies",
+                "Sustainable development practices",
+                "Cost-saving measures",
+                "Regulatory compliance",
+                "Technology upgrades",
+                "Employee training",
+                "Environmental impact assessments",
+                "Other"
+            ]
+            
+            # Allow users to rank topics via drag-and-drop
+            ranked_topics = sort_items(
+                topics, 
+                key="time_covered_ranking", 
+                direction="vertical"
+            )
+            
+            # Display the final ranking
+            st.write("You ranked the topics as follows (by time covered):")
+            st.write(ranked_topics)
+            # Updated question with multiple-choice selection
+            st.multiselect(
+                "What topics do you usually discuss during your meetings with firms? (Select all that apply)", 
+                options=[
                     "Energy efficiency strategies",
                     "Sustainable development practices",
                     "Cost-saving measures",
@@ -158,50 +182,26 @@ def sustainability_advisors_question():
                     "Employee training",
                     "Environmental impact assessments",
                     "Other"
-                ]
-                
-                # Allow users to rank topics via drag-and-drop
-                ranked_topics = sort_items(
-                    topics, 
-                    key="time_covered_ranking", 
-                    direction="vertical"
-                )
-                
-                # Display the final ranking
-                st.write("You ranked the topics as follows (by time covered):")
-                st.write(ranked_topics)
-                # Updated question with multiple-choice selection
-                st.multiselect(
-                    "What topics do you usually discuss during your meetings with firms? (Select all that apply)", 
-                    options=[
-                        "Energy efficiency strategies",
-                        "Sustainable development practices",
-                        "Cost-saving measures",
-                        "Regulatory compliance",
-                        "Technology upgrades",
-                        "Employee training",
-                        "Environmental impact assessments",
-                        "Other"
-                    ], 
-                    key="meeting_topics_advisors"
-                )
-                st.radio(
-                    "How effective do you feel your meetings are in supporting firms to improve their sustainability practices?", 
-                    options=["Very effective", "Somewhat effective", "Neutral", "Not very effective", "Not effective at all"], 
-                    key="meeting_effectiveness_advisors"
-                )                
-                # Advice Given and Client Reactions
-                st.write("**Advice Given and Client Reactions**")
-                st.text_area("What advice have you given to firms that they have chosen to follow?", key="advice_followed_by_firms")
-                st.text_area("Why do you think firms chose to follow your advice?", key="reasons_for_firms_following")
-                st.text_area("What advice have you given to firms that they decided not to follow?", key="advice_not_followed_by_firms")
-                st.text_area("Why do you think firms chose not to follow your advice? (e.g., financial costs, labor costs, other reasons)", key="reasons_firms_not_following")
-                
-                # Effectiveness of Energy Efficiency Measures and Expected Outcomes
-                st.write("**Effectiveness and Expected Outcomes**")
-                st.number_input("Of the 707 firms selected for the EENergy project, how many do you expect will achieve a reduction in energy use?", min_value=0, max_value=707, step=1, key="expected_reduction")
-                st.text_area("In your opinion, what actions or solutions are most helpful for reducing a firm's energy use? (What might the success of an average firm depend on?)", key="measures_effectiveness_most")
-                st.text_area("In your opinion, what actions or solutions are least helpful for reducing a firm's energy use?", key="measures_effectiveness_least")
+                ], 
+                key="meeting_topics_advisors"
+            )
+            st.radio(
+                "How effective do you feel your meetings are in supporting firms to improve their sustainability practices?", 
+                options=["Very effective", "Somewhat effective", "Neutral", "Not very effective", "Not effective at all"], 
+                key="meeting_effectiveness_advisors"
+            )                
+            # Advice Given and Client Reactions
+            st.write("**Advice Given and Client Reactions**")
+            st.text_area("What advice have you given to firms that they have chosen to follow?", key="advice_followed_by_firms")
+            st.text_area("Why do you think firms chose to follow your advice?", key="reasons_for_firms_following")
+            st.text_area("What advice have you given to firms that they decided not to follow?", key="advice_not_followed_by_firms")
+            st.text_area("Why do you think firms chose not to follow your advice? (e.g., financial costs, labor costs, other reasons)", key="reasons_firms_not_following")
+            
+            # Effectiveness of Energy Efficiency Measures and Expected Outcomes
+            st.write("**Effectiveness and Expected Outcomes**")
+            st.number_input("Of the 707 firms selected for the EENergy project, how many do you expect will achieve a reduction in energy use?", min_value=0, max_value=707, step=1, key="expected_reduction")
+            st.text_area("In your opinion, what actions or solutions are most helpful for reducing a firm's energy use? (What might the success of an average firm depend on?)", key="measures_effectiveness_most")
+            st.text_area("In your opinion, what actions or solutions are least helpful for reducing a firm's energy use?", key="measures_effectiveness_least")
 
 
 def secrets_to_json():
