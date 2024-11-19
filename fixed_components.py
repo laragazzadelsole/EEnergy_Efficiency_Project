@@ -248,7 +248,52 @@ def sustainability_advisors_question():
             )
             st.text_area("What advice have you given to firms that they decided not to follow?", key="advice_not_followed_by_firms")
             st.text_area("Why do you think firms chose not to follow your advice? (e.g., financial costs, labor costs, other reasons)", key="reasons_firms_not_following")
+            st.subheader("Consultancy and Advisory Fees")
+
+            # Question 1: Per hour consultancy fees
+            st.radio(
+                "What is your per hour consultancy fee, averaged for the last 30 days?",
+                options=[
+                    "Less than $50",
+                    "$50 - $100",
+                    "$100 - $150",
+                    "$150 - $200",
+                    "More than $200"
+                ],
+                key="personal_hourly_fee"
+            )
             
+            # Question 2: Firm's average per hour consultancy fees
+            st.radio(
+                "What is the average per hour consultancy fee for your firm, if different, averaged for the last 30 days?",
+                options=[
+                    "Less than $50",
+                    "$50 - $100",
+                    "$100 - $150",
+                    "$150 - $200",
+                    "More than $200",
+                    "Not applicable (same as personal)"
+                ],
+                key="firm_hourly_fee"
+            )
+            
+            st.subheader("Consultancy and Advisory Hours")
+            
+            # Question 3: Hours of consulting/advice provided by the firm
+            st.number_input(
+                "In the last 30 days, how many hours of consulting/advice per week has your firm provided?",
+                min_value=0,
+                step=1,
+                key="firm_hours_per_week"
+            )
+            
+            # Question 4: Hours of consulting/advice you provided personally
+            st.number_input(
+                "In the last 30 days, how many hours of consulting/advice per week have you personally provided?",
+                min_value=0,
+                step=1,
+                key="personal_hours_per_week"
+            )
             # Effectiveness of Energy Efficiency Measures and Expected Outcomes
             st.write("**Effectiveness and Expected Outcomes**")
             st.number_input("Of the 707 firms selected for the EENergy project, how many do you expect will achieve a reduction in energy use?", min_value=0, max_value=707, step=1, key="expected_reduction")
