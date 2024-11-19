@@ -97,7 +97,6 @@ def initialize_session_state():
             'Expected Reduction in Energy Use': [],
             'Most Effective Measures': [],
             'Least Effective Measures': [],
-            '
         }
     
 def safe_var(key):
