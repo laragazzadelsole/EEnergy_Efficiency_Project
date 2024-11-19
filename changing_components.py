@@ -377,9 +377,10 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     #column_names = sheet.append_row(column_names_list)
 
     sheet_row_update = sheet.append_rows(concatenated_df.values.tolist()) #.values.tolist())
-    
+    # Format the current datetime as a string
+    current_time_str = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     #Navigate to the folder in Google Drive. Copy the Folder ID found in the URL. This is everything that comes after “folder/” in the URL.
-    backup_sheet = client.create(f'Backup_{data[USER_FULL_NAME]}_{datetime.now()}', folder_id= secrets_to_json()['folder_id']).sheet1
+    backup_sheet = client.create(f'Backup_{data[USER_FULL_NAME]}_{current_time_str}', folder_id= secrets_to_json()['folder_id']).sheet1
     backup_sheet = backup_sheet.append_rows(concatenated_df.values.tolist()) #(new_bins_df.iloc[:2].values.tolist())
     #backup_sheet.share('', perm_type = 'user', role = 'writer')
 
