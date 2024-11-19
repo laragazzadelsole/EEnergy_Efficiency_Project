@@ -63,7 +63,7 @@ def initialize_session_state():
         st.session_state['data'] = {
             'User Full Name': [],
             'User Working Position': [],
-            'User Professional Category': [],
+            'Professional Category': [],
             'User Years of Experience': [],
             'Working Hours': [],
             'Minimum Effect Size Q1': [],
@@ -280,7 +280,7 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     data = st.session_state['data']
 
     USER_FULL_NAME = 'User Full Name'
-    USER_PROF_CATEGORY = 'User Professional Category'
+    PROFESSIONAL_CATEGORY = 'Professional Category'
     USER_POSITION = 'User Working Position'
     YEARS_OF_EXPERIENCE = 'User Years of Experience'
     WORKING_HOURS = 'Working Hours'
