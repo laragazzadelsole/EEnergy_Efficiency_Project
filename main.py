@@ -27,7 +27,7 @@ if st.session_state['consent'] == True:
     
     sustainability_advisors_question()
 
-    st.button("Next Page", on_click=next_page)
+    #st.button("Next Page", on_click=next_page)
     
 
     st.subheader(SECTION_TWO)
