@@ -19,7 +19,7 @@ if st.session_state.page == 0:
     
     consent_form()
 
-if st.session_state['consent'] == True:
+if st.session_state['consent'] == True & st.session_state.page == 0:
 
     personal_information()
 
