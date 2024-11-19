@@ -231,7 +231,21 @@ def sustainability_advisors_question():
             # Advice Given and Client Reactions
             st.write("**Advice Given and Client Reactions**")
             st.text_area("What advice have you given to firms that they have chosen to follow?", key="advice_followed_by_firms")
-            st.text_area("Why do you think firms chose to follow your advice?", key="reasons_for_firms_following")
+            st.write("Why do you think firms chose to follow your advice?")
+            st.multiselect(
+                "Select all reasons that apply:",
+                options=[
+                    "Cost savings were clear and immediate",
+                    "The advice aligned with their sustainability goals",
+                    "Regulatory compliance requirements",
+                    "The technology or solution was easy to implement",
+                    "Financial support or subsidies were available",
+                    "Peer or industry pressure",
+                    "Trust in your expertise or reputation",
+                    "Other"
+                ],
+                key="reasons_for_firms_following"
+            )
             st.text_area("What advice have you given to firms that they decided not to follow?", key="advice_not_followed_by_firms")
             st.text_area("Why do you think firms chose not to follow your advice? (e.g., financial costs, labor costs, other reasons)", key="reasons_firms_not_following")
             
