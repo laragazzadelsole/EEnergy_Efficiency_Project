@@ -121,7 +121,7 @@ def sustainability_advisors_question():
 
         with col1:
             # Advisor Background and Experience
-            st.write("**Advisor Background and Experience**")
+            st.subheader("Advisor Background and Experience")
             st.number_input("How many years have you been working as an advisor on energy efficiency topics?", 
                 min_value=0.0, 
                 step=0.5, 
@@ -134,7 +134,7 @@ def sustainability_advisors_question():
             #st.selectbox("How do you usually find new clients or start working with them?", options=["Referrals", "Cold outreach", "Inbound inquiries", "Networking events", "Other"], key="client_acquisition")
             
             # Workload and Client Interactions
-            st.write("**Workload and Client Interactions**")
+            st.subheader("Workload and Client Interactions")
             st.write("For the following questions, please reflect on your typical work with firms in the past week. If the last week was unusual (e.g., due to vacation), please consider a typical week instead.")
             st.number_input("How many firms did you advise on energy efficiency topics in the past week (include all clients, not just those within EEN)?", min_value=0, step=1, key="firms_consulted_pw")
             st.number_input("On average, how many hours in total do you spend working with each client on a project or service?", min_value=0.0, step=0.5, key="working_hours")
@@ -229,7 +229,7 @@ def sustainability_advisors_question():
             )
             
             # Advice Given and Client Reactions
-            st.write("**Advice Given and Client Reactions**")
+            st.subheader("Advice Given and Client Reactions")
             st.text_area("What advice have you given to firms that they have chosen to follow?", key="advice_followed_by_firms")
             st.write("Why do you think firms chose to follow your advice?")
             st.multiselect(
