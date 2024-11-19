@@ -96,7 +96,8 @@ def initialize_session_state():
             'Reasons Firms Did Not Follow Advice': [],
             'Expected Reduction in Energy Use': [],
             'Most Effective Measures': [],
-            'Least Effective Measures': []
+            'Least Effective Measures': [],
+            '
         }
     
 def safe_var(key):
@@ -296,6 +297,26 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     #MIN_EFF_SIZE_Q10 = 'Minimum Effect Size Q10'
     COST_BENEFIT_RATIO = 'Cost-Benefit Ratio'
     RISK_AVERSION = 'Risk Aversion'
+    # Define constants for the new fields
+    YEARS_AS_ADVISOR = 'Years as Advisor'
+    JOIN_DATE_EEN = 'Join Date EEN'
+    EXPERT_OR_GENERALIST = 'Expert or Generalist'
+    WORK_DEDICATION = 'Work Dedication'
+    FIRMS_CONSULTED_PW = 'Firms Consulted Per Week'
+    AVG_WORKING_HOURS_PER_CLIENT = 'Average Working Hours Per Client'
+    NUM_FIRMS_ADVISED = 'Number of Firms Advised on Sustainability'
+    MEETING_FREQUENCY = 'Meeting Frequency'
+    MEETING_DURATION = 'Meeting Duration'
+    TOPICS_DISCUSSED = 'Topics Discussed'
+    TIME_COVERED_RANKINGS = 'Time Covered Rankings'
+    MEETING_EFFECTIVENESS = 'Meeting Effectiveness'
+    ADVICE_FOLLOWED = 'Advice Followed by Firms'
+    REASONS_FOLLOWED = 'Reasons Firms Followed Advice'
+    ADVICE_NOT_FOLLOWED = 'Advice Not Followed by Firms'
+    REASONS_NOT_FOLLOWED = 'Reasons Firms Did Not Follow Advice'
+    EXPECTED_REDUCTION = 'Expected Reduction in Energy Use'
+    MOST_EFFECTIVE_MEASURES = 'Most Effective Measures'
+    LEAST_EFFECTIVE_MEASURES = 'Least Effective Measures'
 
     data[USER_FULL_NAME].append(safe_var('user_full_name'))
     data[USER_POSITION].append(safe_var('user_position'))
@@ -314,6 +335,26 @@ def add_submission(updated_bins_question_1_df, updated_bins_question_2_df, updat
     #data[MIN_EFF_SIZE_Q10].append(safe_var('num_input_question10'))
     data[COST_BENEFIT_RATIO].append(safe_var('cost_benefit'))
     data[RISK_AVERSION].append(safe_var('risk_aversion'))
+    # Append the new fields
+    data[YEARS_AS_ADVISOR].append(safe_var('years_as_advisor'))
+    data[JOIN_DATE_EEN].append(safe_var('join_date_een'))
+    data[EXPERT_OR_GENERALIST].append(safe_var('expert_or_generalist'))
+    data[WORK_DEDICATION].append(safe_var('work_dedication'))
+    data[FIRMS_CONSULTED_PW].append(safe_var('firms_consulted_pw'))
+    data[AVG_WORKING_HOURS_PER_CLIENT].append(safe_var('working_hours'))
+    data[NUM_FIRMS_ADVISED].append(safe_var('num_firms_advised'))
+    data[MEETING_FREQUENCY].append(safe_var('meeting_frequency_advisors'))
+    data[MEETING_DURATION].append(safe_var('meeting_duration_advisors'))
+    data[TOPICS_DISCUSSED].append(safe_var('meeting_topics_advisors'))
+    data[TIME_COVERED_RANKINGS].append(safe_var('time_covered_ranking'))
+    data[MEETING_EFFECTIVENESS].append(safe_var('meeting_effectiveness_advisors'))
+    data[ADVICE_FOLLOWED].append(safe_var('advice_followed_by_firms'))
+    data[REASONS_FOLLOWED].append(safe_var('reasons_for_firms_following'))
+    data[ADVICE_NOT_FOLLOWED].append(safe_var('advice_not_followed_by_firms'))
+    data[REASONS_NOT_FOLLOWED].append(safe_var('reasons_firms_not_following'))
+    data[EXPECTED_REDUCTION].append(safe_var('expected_reduction'))
+    data[MOST_EFFECTIVE_MEASURES].append(safe_var('measures_effectiveness_most'))
+    data[LEAST_EFFECTIVE_MEASURES].append(safe_var('measures_effectiveness_least'))
 
     st.session_state['data'] = data
     
