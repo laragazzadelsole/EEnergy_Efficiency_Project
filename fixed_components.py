@@ -128,22 +128,47 @@ def sustainability_advisors_question():
                     key='years_as_advisor')
                 st.date_input("In which year did you join EEN?", key="join_date_een")
                 st.radio("Do you describe yourself as an energy efficiency expert, generalist, or other?", options=["Energy efficiency expert", "Generalist", "Other"], key="expert_or_generalist")
-                st.multiselect("When evaluating energy efficiency, what do you rely on most? (Select all that apply)", options=["Formal training", "Professional knowledge", "Experience", "Combination"], key="assessment_basis")
+                #st.multiselect("When evaluating energy efficiency, what do you rely on most? (Select all that apply)", options=["Formal training", "Professional knowledge", "Experience", "Combination"], key="assessment_basis")
                 st.selectbox("On average, what percentage of your work is related to energy efficiency topics?", options=["Less than 30%", "30-70%", "More than 70%"], key="work_dedication")
-                st.selectbox("How do you usually find new clients or start working with them?", options=["Referrals", "Cold outreach", "Inbound inquiries", "Networking events", "Other"], key="client_acquisition")
+                #st.selectbox("How do you usually find new clients or start working with them?", options=["Referrals", "Cold outreach", "Inbound inquiries", "Networking events", "Other"], key="client_acquisition")
                 
                 # Workload and Client Interactions
                 st.write("**Workload and Client Interactions**")
                 st.write("For the following questions, please reflect on your typical work with firms in the past week. If the last week was unusual (e.g., due to vacation), please consider a typical week instead.")
                 st.number_input("How many firms did you advise on energy efficiency topics in the past week (include all clients, not just those within EEN)?", min_value=0, step=1, key="firms_consulted_pw")
-                st.number_input("On average, how many hours do you spend working with each client on a project or service?", min_value=0.0, step=0.5, key="working_hours")
+                st.number_input("On average, how many hours in total do you spend working with each client on a project or service?", min_value=0.0, step=0.5, key="working_hours")
 
-                st.number_input("How many firms do you advise on sustainable development practices?", min_value=0, step=1, key="num_firms_advised")
+                st.number_input("How many firms do you advise on sustainable development practices unrelated to energy efficiency?", min_value=0, step=1, key="num_firms_advised")
                 
                 # Client Engagement and Meeting Effectiveness
                 st.write("**Client Engagement and Meeting Effectiveness**")
                 st.selectbox("How often do you meet with the firms you advise?", options=["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "As needed"], key="meeting_frequency_advisors")
                 st.selectbox("How long are your typical meetings with the firms you advise?", options=["Less than 30 minutes", "30-60 minutes", "1-2 hours", "More than 2 hours"], key="meeting_duration_advisors")
+                
+                st.title("Rank Topics by Time Covered During Meetings")
+
+                # List of topics to rank
+                topics = [
+                    "Energy efficiency strategies",
+                    "Sustainable development practices",
+                    "Cost-saving measures",
+                    "Regulatory compliance",
+                    "Technology upgrades",
+                    "Employee training",
+                    "Environmental impact assessments",
+                    "Other"
+                ]
+                
+                # Allow users to rank topics via drag-and-drop
+                ranked_topics = st_sortable(
+                    topics, 
+                    key="time_covered_ranking", 
+                    direction="vertical"
+                )
+                
+                # Display the final ranking
+                st.write("You ranked the topics as follows (by time covered):")
+                st.write(ranked_topics)
                 # Updated question with multiple-choice selection
                 st.multiselect(
                     "What topics do you usually discuss during your meetings with firms? (Select all that apply)", 
