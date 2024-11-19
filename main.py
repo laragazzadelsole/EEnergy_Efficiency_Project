@@ -25,7 +25,7 @@ if st.session_state.page == 0:
 
 elif st.session_state.page == 1:
 
-    entrepreneur_firm_representative_question()
+    #entrepreneur_firm_representative_question()
     
     sustainability_advisors_question()
 
