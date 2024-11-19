@@ -190,10 +190,9 @@ def sustainability_advisors_question():
                 options=["Very effective", "Somewhat effective", "Neutral", "Not very effective", "Not effective at all"], 
                 key="meeting_effectiveness_advisors"
             )                
-            # Example list of technologies for Column 1
-            # Updated list of technologies for Column 1
+            # Shortened technology names
             technologies = [
-                "Renewable Energy (e.g. PV Panels)",
+                "Renewable Energy (PV Panels)",
                 "Energy Storage",
                 "Combined Renewable + Storage",
                 "Efficient Lighting",
@@ -203,27 +202,31 @@ def sustainability_advisors_question():
                 "Energy-Efficient Vehicles"
             ]
             
-            # Create a DataFrame for the table
-            data = pd.DataFrame({
+            # Initialize data
+            data = {
                 "Technology": technologies,
-                "Payback Time (months)": ["" for _ in technologies],  # Placeholder for payback time
-                "Energy Savings ($/1000)": ["" for _ in technologies]  # Placeholder for energy savings
-            })
+                "Payback Time (months)": ["" for _ in technologies],  # Empty for user input
+                "Energy Savings ($/1000)": ["" for _ in technologies]  # Empty for user input
+            }
             
-            # Add the question header
+            df = pd.DataFrame(data)
+            
+            # Calculate table height dynamically
+            row_height = 35  # Approximate row height in pixels
+            table_height = (len(df) + 1) * row_height  # Add 1 for the header
+            
+            # Display the table
             st.subheader("Which technologies do you think are most effective in improving energy efficiency?")
+            df['Technology'] = df['Technology'].astype(str)  # Ensure the first column is treated as strings
             
-            edited_data = st.experimental_data_editor(
-                data,
-                num_rows="dynamic",  # Allow adding/removing rows dynamically
-                use_container_width=True,
-                disabled=False,  # Set to False to disable editing if needed
-                key="tech_efficiency_table"
+            edited_df = st.data_editor(
+                df,
+                use_container_width=True,  # Expand to the full container width
+                hide_index=True,  # Hide the default index
+                disabled=['Technology'],  # Prevent editing the Technology column
+                height=table_height  # Adjust height based on rows
             )
             
-            # Display the result
-            st.write("Your input:")
-            st.write(edited_data)
             # Advice Given and Client Reactions
             st.write("**Advice Given and Client Reactions**")
             st.text_area("What advice have you given to firms that they have chosen to follow?", key="advice_followed_by_firms")
