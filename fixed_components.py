@@ -206,7 +206,7 @@ def sustainability_advisors_question():
             data = {
                 "Technology": technologies,
                 "Payback Time (months)": ["" for _ in technologies],  # Empty for user input
-                "Energy Savings ($/1000)": ["" for _ in technologies]  # Empty for user input
+                "Energy Savings (€/1000)": ["" for _ in technologies]  # Empty for user input
             }
             
             df = pd.DataFrame(data)
@@ -217,7 +217,7 @@ def sustainability_advisors_question():
             
             # Display the table
             st.subheader("Which technologies do you think are most effective in improving energy efficiency?")
-            st.write("Please complete the table below by filling in the following details for each technology:\n1. **Payback Time (months)**: Write how many months it will take to recover the money spent on this technology (e.g., '12' for 12 months). \n2. **Energy Savings (€/1000)**: Write how much energy (in Euros) will be saved for every $1,000 spent (e.g., '150' for $150 savings per $1,000).")
+            st.write("Please complete the table below by filling in the following details for each technology:\n1. **Payback Time (months)**: Write how many months it will take to recover the money spent on this technology (e.g., '12' for 12 months). \n2. **Energy Savings (€/1000)**: Write how much energy (in Euros) will be saved for every €1,000 spent (e.g., '150' for €150 savings per €1,000).")
             df['Technology'] = df['Technology'].astype(str)  # Ensure the first column is treated as strings
             
             edited_df = st.data_editor(
